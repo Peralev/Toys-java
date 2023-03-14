@@ -20,5 +20,24 @@ class Toy {
 }
 
 public class Toys {
+    static ArrayList<Toy> toys = new ArrayList<Toy>(); 
+
+    static void addToy(int id, String name, int weight) {
+
+        for(int i = 0; i < toys.size();i++) {
+            Toy toy = toys.get(i);
+            if (toy.id == id) {                
+                toy.name = name;
+                toy.weight = weight;
+                return;
+            }
+        }
+
+        toys.add(new Toy(name, id, weight));
+    }
     
+    public static void main(String[] args) {
+
+
+}
 }
