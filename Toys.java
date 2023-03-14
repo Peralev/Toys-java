@@ -20,7 +20,9 @@ class Toy {
 }
 
 public class Toys {
-    static ArrayList<Toy> toys = new ArrayList<Toy>(); 
+    static ArrayList<Toy> toys = new ArrayList<Toy>();
+    static ArrayList<Toy> prizeToys = new ArrayList<Toy>();
+    static Random random = new Random(); 
 
     static void addToy(int id, String name, int weight) {
 
@@ -35,8 +37,33 @@ public class Toys {
 
         toys.add(new Toy(name, id, weight));
     }
+    static void choiseToy() {
+        int weight = 0;
+        for(int i=0; i<toys.size(); i++) {
+            weight += toys.get(i).weight;
+        }
+        
+        int number = random.nextInt(weight);
+
+        Toy choose = null;
+        for(int i=0; i<toys.size(); i++) {
+            number -= toys.get(i).weight;
+            if (number >= 0)
+                continue;
+            choose = toys.get(i);
+            break;  
+        }
+        choose.count += 1;
+
+        prizeToys.add(choose);
+    }
     
     public static void main(String[] args) {
+
+        addToy(1, "plane", 10);
+        addToy(2, "plane2", 20);
+        addToy(3, "Bear", 40);
+        addToy(4, "Parot", 15);
 
 
 }
