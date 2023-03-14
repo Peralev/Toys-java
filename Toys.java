@@ -57,6 +57,15 @@ public class Toys {
 
         prizeToys.add(choose);
     }
+
+    static Toy getToy() {
+        if (!prizeToys.isEmpty()) {
+            Toy toy = prizeToys.remove(0);
+            toy.count -= 1;
+            return toy;
+        }
+        return null;
+    }
     
     public static void main(String[] args) {
 
@@ -65,6 +74,28 @@ public class Toys {
         addToy(3, "Bear", 40);
         addToy(4, "Parot", 15);
 
+        for (int i = 0; i < 10; i++) {
+            choiseToy();
+        }
 
-}
+        for (int i = 0; i < 10; i++) {
+            choiseToy();
+        }
+
+        PrintWriter writer = null;       
+        try {
+            writer = new PrintWriter("Prize.txt");
+                         
+            for (Toy toy = getToy(); toy != null; toy = getToy()) {
+                writer.format("name: %s, id: %d, weight: %d, count: %d\n",
+                    toy.name, toy.id, toy.weight, toy.count);
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            if (writer != null)
+                writer.close();
+        }
+    }
 }
