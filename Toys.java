@@ -77,11 +77,7 @@ public class Toys {
         for (int i = 0; i < 10; i++) {
             choiseToy();
         }
-
-        for (int i = 0; i < 10; i++) {
-            choiseToy();
-        }
-
+        
         PrintWriter writer = null;       
         try {
             writer = new PrintWriter("Prize.txt");
